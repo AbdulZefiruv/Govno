@@ -1,0 +1,66 @@
+.button {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+.button > button {
+    padding: 12px 40px;
+    text-align: center;
+    color: black;
+    text-decoration: none;
+    border: 2px solid black;
+    transition: all .2s linear;
+}
+.button > button:hover{
+    color: #000000;
+    background: rgba(0, 35, 143, 0.25);
+    border-color: rgba(2, 31, 129, 0.25);
+}
+.modal {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    padding: 30px;
+    overflow-y: auto;
+    display: none;
+}
+.modal_main {
+    position: relative;
+    max-width: 600px;
+    background-color: rgb(255, 255, 255);
+    margin: auto;
+    color: #000000;
+    border-radius: 15px;
+    padding: 30px;
+    cursor: default;
+}
+.modal_title {
+    margin-bottom: 30px;
+}
+
+.modal_close{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 25px;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    outline: 1px solid transparent;
+    outline-offset: 3px;
+    transition: outline-color .15s ease-in-out;
+    border-radius: 2px;
+    padding: 0px;
+    text-align: center;
+    display: block;
+    width: 30px;
+    height: 30px;
+}
+
+.modal_close:focus-visible {
+    outline-color: green;
+}
