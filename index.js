@@ -1,27 +1,116 @@
-const buttonElement =  document.querySelector('button');
-const modalElement =  document.querySelector('.modal');
-
-modalElement.style.cssText = `
-display: flex;
-visibility: hidden;
-opacity: 0;
-transition: opacity 200ms ease-in-out;
-`;
-const closeModal = event => {
-    const target = event.target;
-
-    if (target === modalElement || target.closest(`.modal_close`)) {
-        modalElement.style.opacity = `0`;
+const footerMenu = document.querySelector('.footer-menu');
+const footerConfig = [
+    {
+        columnTitle: "Инструменты",
+        childrens: [
+        {
+            title: 'Unreal Engine',
+        },
+        {
+            title: 'UEFN',
+        },
+        {
+            title: 'MetaHuman',
+        },
+        {
+            title: 'Twinmotion',
+        },
+        {
+            title: 'Megascans',
+        },
+        {
+            title: 'RealityScan',
+        },
+        ]
+    },
+    {
+        columnTitle: "Сетевые службы",
+        childrens: [
+            {
+                title: 'Epic Online Services',
+            },
+            {
+                title: 'Kids Web Services',
+            },
+            {
+                title: 'Соглашение на обслуживание',
+            },
+            {
+                title: 'Политика допустимого использования',
+            },
+            {
+                title: 'Положение о доверии',
+            },
+            {
+                title: 'Операторы данных',
+            },
+        ]
+    },
+    {
+        columnTitle: "Магазин",
+        childrens: [
+            {
+                title: 'Epic Game store',
+            },
+            {
+                title: 'Fab',
+            },
+            {
+                title: 'Sketchfab',
+            },
+            {
+                title: 'ArtStation',
+            },
+        ]
+    },
+    {
+        columnTitle: "Игры",
+        childrens: [
+            {
+                title: 'Fortnite',
+            },
+            {
+                title: 'Fall Guys',
+            },
+            {
+                title: 'Unreal Tournament',
+            },
+        ]
     }
-    setTimeout(()=> {
-        modalElement.style.visibility = 'hidden';
-    } ,200)
+
+]
+
+function renderFooterElements() {
+    footerConfig.map(element => {
+        const ulElement = document.createElement('ul');
+        ulElement.classList.add('footer-menu-list');
+
+        renderUlTitleElement(ulElement, element.columnTitle)
+
+        element.childrens.map(child => {
+            renderLiElement(ulElement, child.title)
+        });
+    })
 }
 
-const openModal = () => {
-    modalElement.style.visibility = `visible`;
-    modalElement.style.opacity = `1`;
-};
+function renderUlTitleElement(ulElement, title) {
+    const titleElement = document.createElement('li');
+    titleElement.classList.add('footer-menu-item')
+    titleElement.innerHTML = `
+            <a href="#" class="footer-menu-link">${title}</a>
+            `;
+    ulElement.append(titleElement);
+}
 
-buttonElement.addEventListener('click', openModal);
-modalElement.addEventListener('click', closeModal);
+function renderLiElement(ulElement, title) {
+    const liElement = document.createElement('li');
+    liElement.innerHTML =
+        `
+            <a href="#" class="footer-menu-link">${title}</a>
+            `
+    liElement.classList.add('footer-menu-item');
+    ulElement.append(liElement)
+    footerMenu.append(ulElement)
+}
+
+renderFooterElements();
